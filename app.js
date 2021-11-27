@@ -1,12 +1,16 @@
 require("dotenv").config("./.env");
 const express = require("express");
-const adminRouter = require('./routes/admin')
 const app = express();
 
-app.use(express.json());
-app.use('/admin', adminRouter);
+const errorHandler = require("./middleware/errorHandler");
 
 require("./helper/db")();
+
+app.use(express.json());
+
+app.use("/admin", require("./routes/admin"));
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 
