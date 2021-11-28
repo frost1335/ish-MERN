@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "client": "npm start --prefix client",
     "dev": "nodemon app.js"
   },
   "keywords": [],
