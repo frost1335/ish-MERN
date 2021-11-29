@@ -91,7 +91,6 @@ exports.PostEditCategory =asyncHandler( async (req, res, next) => {
     }
   });
 });
-
 exports.IdDeleteCategory =asyncHandler( async (req, res, next) => {
   let categorys = await Category.findById(req.params.id);
   if(!categorys){
@@ -116,12 +115,36 @@ exports.GetReadWorker =asyncHandler( async (req, res, next) => {
   })
 });
 exports.GetAddWorker =asyncHandler( async (req, res, next) => {
+  const categorys = await Category.find();
   res.status(200).json({
     success: true,
+    data: categorys
   })
 });
 exports.PostAddWorker =asyncHandler( async (req, res, next) => {
-  const workers = await Worker.create(req.body);
+  const {
+    name,
+    price,
+    comment,
+    adress,
+    categoryId
+} = req.body
+if (req.file) {
+    img = req.file.filename
+} else {
+    img = ""
+}
+const workers = new Work({
+    name,
+    price,
+    comment,
+    adress,
+    img,
+    categoryId
+})
+await workers.save()
+  
+  
   res.status(201).json({
     success: true,
     data: workers
@@ -139,12 +162,13 @@ exports.GetIDWorker =asyncHandler( async (req, res, next) => {
 });
 exports.GetEditWorker =asyncHandler( async (req, res, next) => {
   const workers = await Worker.findById(req.params.id);
+  const categorys = await Category.find();
   if(!workers){
     return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
   }
   res.status(200).json({
     success: true,
-    data: workers
+    data: workers, categorys //{workers,categorys}
   })
 });
 exports.PostEditWorker =asyncHandler( async (req, res, next) => {
@@ -152,11 +176,24 @@ exports.PostEditWorker =asyncHandler( async (req, res, next) => {
   if(!workers){
     return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
   }
-  workers = await Worker.findByIdAndUpdate(req.params.id, req.body, {new:true, runValidators: true});
-  res.status(201).json({
-    success: true,
-    data: workers
-  })
+  const { img } = await Worker.findById(req.params.id)
+    const admin = req.body
+    if (req.file) {
+        toDelete(img)
+        admin.img = req.file.filename
+    } else {
+        admin.img = img
+    }
+  workers = await Worker.findByIdAndUpdate(req.params.id, admin, (err) => {
+    if(err){
+      console.log(err)
+    } else {
+      res.status(201).json({
+        success: true,
+        data: workers
+      })
+    }
+  });
 });
 exports.IdDeleteWorker =asyncHandler( async (req, res, next) => {
   let workers = await Worker.findById(req.params.id);
