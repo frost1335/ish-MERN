@@ -11,11 +11,9 @@ exports.mainAdmin = asyncHandler(async (req, res, next) => {
     success: true,
   });
 });
-
 /* +++++++++++++++++++++++++++++++++++++++ Category ++++++++++++++++++++++++++++++++++++++++++++++ */
 exports.GetReadCategory = asyncHandler(async (req, res, next) => {
   const categorys = await Category.find();
-
   res.status(200).json({
     success: true,
     data: categorys,
@@ -28,13 +26,11 @@ exports.GetAddCategory = asyncHandler(async (req, res, next) => {
 });
 exports.PostAddCategory = asyncHandler(async (req, res) => {
   const { name } = req.body;
-
   if (req.file) {
     img = req.file.filename;
   } else {
     img = "";
   }
-
   const categorys = new Category({
     name,
     img,
@@ -52,7 +48,6 @@ exports.GetIDCategory = asyncHandler(async (req, res, next) => {
       new ErrorResponse(`Category with id ${req.params.id} was not found`, 404)
     );
   }
-
   let workers = await Category.aggregate([
     {
       $lookup: {
@@ -188,7 +183,6 @@ exports.PostAddWorker = asyncHandler(async (req, res, next) => {
     categoryId,
   });
   await workers.save();
-
   res.status(201).json({
     success: true,
     data: workers,

@@ -7,7 +7,6 @@ router
     .route("/")
     .get(adminController.mainAdmin);
 /* +++++++++++++++++++++++++++++++++++++++ Category ++++++++++++++++++++++++++++++++++++++++++++++ */
-
 router
     .route("/categorys")
     .get(adminController.GetReadCategory);
@@ -25,7 +24,6 @@ router
     .get(adminController.GetEditCategory)
     .put(fileMiddleware.single("img"), adminController.PostEditCategory);
 /* +++++++++++++++++++++++++++++++++++++++ Worker ++++++++++++++++++++++++++++++++++++++++++++++ */
-
 router
     .route("/workers")
     .get(adminController.GetReadWorker);
