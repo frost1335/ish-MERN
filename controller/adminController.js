@@ -6,9 +6,12 @@ const moment = require("moment");
 const asyncHandler = require("../middleware/asyncHandler");
 const ErrorResponse = require("../utils/errorResponse")
 
-exports.mainAdmin = (req, res, next) => {
-  res.send("Admin page")
-};
+exports.mainAdmin =asyncHandler( async  (req, res, next) => {
+  
+  res.status(200).json({
+    success: true,
+  })
+});
 
 /* +++++++++++++++++++++++++++++++++++++++ Category ++++++++++++++++++++++++++++++++++++++++++++++ */
 exports.GetReadCategory =asyncHandler( async (req, res, next) => {
