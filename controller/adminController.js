@@ -41,6 +41,16 @@ exports.GetIDCategory =asyncHandler( async (req, res, next) => {
     data: category
   })
 });
+exports.GetEditCategory =asyncHandler( async (req, res, next) => {
+  const category = await Category.findById(req.params.id);
+  if(!category){
+    return next(new ErrorResponse(`Category with id ${req.params.id} was not found`, 404));
+  }
+  res.status(200).json({
+    success: true,
+    data: category
+  })
+});
 exports.PostEditCategory =asyncHandler( async (req, res, next) => {
   let category = await Category.findById(req.params.id);
   if(!category){
@@ -87,6 +97,16 @@ exports.PostAddWorker =asyncHandler( async (req, res, next) => {
   })
 });
 exports.GetIDWorker =asyncHandler( async (req, res, next) => {
+  const worker = await Worker.findById(req.params.id);
+  if(!worker){
+    return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
+  }
+  res.status(200).json({
+    success: true,
+    data: worker
+  })
+});
+exports.GetEditWorker =asyncHandler( async (req, res, next) => {
   const worker = await Worker.findById(req.params.id);
   if(!worker){
     return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));

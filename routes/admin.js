@@ -6,7 +6,6 @@ const adminController = require("../controller/adminController")
 router
     .route("/")
     .get(adminController.mainAdmin);
-
 /* +++++++++++++++++++++++++++++++++++++++ Category ++++++++++++++++++++++++++++++++++++++++++++++ */
 
 router
@@ -20,9 +19,11 @@ router
 router
     .route("/category/:id")
     .get(adminController.GetIDCategory)
-    .put(fileMiddleware.single("img"), adminController.PostEditCategory)
     .delete(adminController.IdDeleteCategory);
-
+router
+    .route("/category/edit/:id")
+    .get(adminController.GetEditCategory)
+    .put(fileMiddleware.single("img"), adminController.PostEditCategory);
 /* +++++++++++++++++++++++++++++++++++++++ Worker ++++++++++++++++++++++++++++++++++++++++++++++ */
 
 router
@@ -35,7 +36,10 @@ router
 router
     .route("/worker/:id")
     .get(adminController.GetIDWorker)
-    .put(fileMiddleware.single("img"), adminController.PostEditWorker)
     .delete(adminController.IdDeleteWorker);
+router
+    .route("/worker/edit/:id")
+    .get(adminController.GetEditWorker)
+    .put(fileMiddleware.single("img"), adminController.PostEditWorker);
 
 module.exports = router;
