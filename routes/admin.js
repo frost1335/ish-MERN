@@ -9,36 +9,36 @@ router
 /* +++++++++++++++++++++++++++++++++++++++ Category ++++++++++++++++++++++++++++++++++++++++++++++ */
 
 router
-    .route("/category")
+    .route("/categorys")
     .get(adminController.GetReadCategory);
 
 router
-    .route("/category/add")
+    .route("/categorys/add")
     .get(adminController.GetAddCategory)
     .post(fileMiddleware.single("img"), adminController.PostAddCategory);
 router
-    .route("/category/:id")
+    .route("/categorys/:id")
     .get(adminController.GetIDCategory)
     .delete(adminController.IdDeleteCategory);
 router
-    .route("/category/edit/:id")
+    .route("/categorys/edit/:id")
     .get(adminController.GetEditCategory)
     .put(fileMiddleware.single("img"), adminController.PostEditCategory);
 /* +++++++++++++++++++++++++++++++++++++++ Worker ++++++++++++++++++++++++++++++++++++++++++++++ */
 
 router
-    .route("/worker")
+    .route("/workers")
     .get(adminController.GetReadWorker);
 router
-    .route("/worker/add")
+    .route("/workers/add")
     .get(adminController.GetAddWorker)
     .post(fileMiddleware.single("img"), adminController.PostAddWorker);
 router
-    .route("/worker/:id")
+    .route("/workers/:id")
     .get(adminController.GetIDWorker)
     .delete(adminController.IdDeleteWorker);
 router
-    .route("/worker/edit/:id")
+    .route("/workers/edit/:id")
     .get(adminController.GetEditWorker)
     .put(fileMiddleware.single("img"), adminController.PostEditWorker);
 

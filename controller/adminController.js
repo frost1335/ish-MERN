@@ -14,12 +14,12 @@ exports.mainAdmin =asyncHandler( async  (req, res, next) => {
 });
 
 /* +++++++++++++++++++++++++++++++++++++++ Category ++++++++++++++++++++++++++++++++++++++++++++++ */
-exports.GetReadCategory =asyncHandler( async (req, res, next) => {
-  const category = await Category.find();
+exports.GetReadCategory =asyncHandler( async (req, res, next) =>{
+  const categorys = await Category.find();
 
   res.status(200).json({
     success: true,
-    data: category
+    data: categorys
   })
 });
 exports.GetAddCategory =asyncHandler( async (req, res, next) => {
@@ -28,63 +28,91 @@ exports.GetAddCategory =asyncHandler( async (req, res, next) => {
   })
 });
 exports.PostAddCategory =asyncHandler( async (req, res) => {
-  const category = await Category.create(req.body);
+  const { name } = req.body
+
+  if (req.file) {
+        img = req.file.filename
+  } else {
+        img = ""
+    }
+
+  const categorys = new Category({
+        name,
+        img,
+    })
+    await categorys.save()
   res.status(201).json({
     success: true,
-    data: category
+    data: categorys
   })
 });
 exports.GetIDCategory =asyncHandler( async (req, res, next) => {
-  const category = await Category.findById(req.params.id);
-  if(!category){
+  const categorys = await Category.findById(req.params.id);
+  if(!categorys){
     return next(new ErrorResponse(`Category with id ${req.params.id} was not found`, 404));
   }
   res.status(200).json({
     success: true,
-    data: category
+    data: categorys
   })
 });
+
 exports.GetEditCategory =asyncHandler( async (req, res, next) => {
-  const category = await Category.findById(req.params.id);
-  if(!category){
+  const categorys = await Category.findById(req.params.id);
+  if(!categorys){
     return next(new ErrorResponse(`Category with id ${req.params.id} was not found`, 404));
   }
   res.status(200).json({
     success: true,
-    data: category
+    data: categorys
   })
 });
 exports.PostEditCategory =asyncHandler( async (req, res, next) => {
-  let category = await Category.findById(req.params.id);
-  if(!category){
+  let categorys = await Category.findById(req.params.id);
+  if(!categorys){
     return next(new ErrorResponse(`Category with id ${req.params.id} was not found`, 404));
   }
-  category = await Category.findByIdAndUpdate(req.params.id, req.body, {new:true, runValidators: true});
-  res.status(201).json({
-    success: true,
-    data: category
-  })
+  const { img } = await Category.findById(req.params.id)
+    const admin = req.body
+    if (req.file) {
+        toDelete(img)
+        admin.img = req.file.filename
+    } else {
+        admin.img = img
+    }
+    categorys = await Category.findByIdAndUpdate(req.params.id, admin, (err) => {
+    if(err){
+      console.log(err)
+    } else {
+      res.status(201).json({
+        success: true,
+        data: categorys
+      })
+    }
+  });
 });
+
 exports.IdDeleteCategory =asyncHandler( async (req, res, next) => {
-  let category = await Category.findById(req.params.id);
-  if(!category){
+  let categorys = await Category.findById(req.params.id);
+  if(!categorys){
     return next(new ErrorResponse(`Category with id ${req.params.id} was not found`, 404));
   }
-  await category.remove();
+  const { img } = await Category.findById(req.params.id)
+  toDelete(img)
+  await categorys.remove();
   res.status(201).json({
     success: true,
-    data: category
+    data: categorys
   })
 });
 
 /* +++++++++++++++++++++++++++++++++++++++ Worker ++++++++++++++++++++++++++++++++++++++++++++++ */
 
 exports.GetReadWorker =asyncHandler( async (req, res, next) => {
-  const worker = await Worker.find();
-
+  const workers = await Worker.find();
   res.status(200).json({
     success: true,
-    data: worker
+    data: workers
   })
 });
 exports.GetAddWorker =asyncHandler( async (req, res, next) => {
@@ -93,51 +121,53 @@ exports.GetAddWorker =asyncHandler( async (req, res, next) => {
   })
 });
 exports.PostAddWorker =asyncHandler( async (req, res, next) => {
-  const worker = await Worker.create(req.body);
+  const workers = await Worker.create(req.body);
   res.status(201).json({
     success: true,
-    data: worker
+    data: workers
   })
 });
 exports.GetIDWorker =asyncHandler( async (req, res, next) => {
-  const worker = await Worker.findById(req.params.id);
-  if(!worker){
+  const workers = await Worker.findById(req.params.id);
+  if(!workers){
     return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
   }
   res.status(200).json({
     success: true,
-    data: worker
+    data: workers
   })
 });
 exports.GetEditWorker =asyncHandler( async (req, res, next) => {
-  const worker = await Worker.findById(req.params.id);
-  if(!worker){
+  const workers = await Worker.findById(req.params.id);
+  if(!workers){
     return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
   }
   res.status(200).json({
     success: true,
-    data: worker
+    data: workers
   })
 });
 exports.PostEditWorker =asyncHandler( async (req, res, next) => {
-  let worker = await Worker.findById(req.params.id);
-  if(!worker){
+  let workers = await Worker.findById(req.params.id);
+  if(!workers){
     return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
   }
-  worker = await Worker.findByIdAndUpdate(req.params.id, req.body, {new:true, runValidators: true});
+  workers = await Worker.findByIdAndUpdate(req.params.id, req.body, {new:true, runValidators: true});
   res.status(201).json({
     success: true,
-    data: worker
+    data: workers
   })
 });
 exports.IdDeleteWorker =asyncHandler( async (req, res, next) => {
-  let worker = await Worker.findById(req.params.id);
-  if(!worker){
+  let workers = await Worker.findById(req.params.id);
+  if(!workers){
     return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
   }
-  await worker.remove();
+  const { img } = await Worker.findById(req.params.id)
+  toDelete(img)
+  await workers.remove();
   res.status(201).json({
     success: true,
-    data: worker
+    data: workers
   })
 });
