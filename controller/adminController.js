@@ -3,15 +3,21 @@ const Category = require("../models/Category");
 const Worker = require("../models/Worker");
 const toDelete = require("../middleware/toDelete");
 const moment = require("moment");
+const asyncHandler = require("../middleware/asyncHandler");
 
 exports.mainAdmin = (req, res, next) => {
   res.send("Admin page")
 };
 
 /* +++++++++++++++++++++++++++++++++++++++ Category ++++++++++++++++++++++++++++++++++++++++++++++ */
-exports.GetReadCategory = async (req, res, next) => {
-  res.send("All Category")
-};
+exports.GetReadCategory =asyncHandler( async (req, res, next) => {
+  const category = await Category.find();
+
+  res.status(200).json({
+    success: true,
+    data: category
+  })
+});
 
 exports.GetAddCategory = async (req, res, next) => {
   res.send("Create category Get")
