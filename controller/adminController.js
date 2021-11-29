@@ -4,6 +4,7 @@ const Worker = require("../models/Worker");
 const toDelete = require("../middleware/toDelete");
 const moment = require("moment");
 const asyncHandler = require("../middleware/asyncHandler");
+const ErrorResponse = require("../utils/errorResponse")
 
 exports.mainAdmin = (req, res, next) => {
   res.send("Admin page")
@@ -18,43 +19,102 @@ exports.GetReadCategory =asyncHandler( async (req, res, next) => {
     data: category
   })
 });
-
-exports.GetAddCategory = async (req, res, next) => {
-  res.send("Create category Get")
-};
-exports.PostAddCategory = async (req, res) => {
-  res.send("Create category Post")
-};
-
-exports.GetIDCategory = async (req, res, next) => {
-  res.send("ID Category page")
-};
-exports.PostEditCategory = async (req, res, next) => {
-  res.send("ID Edit category")
-};
-exports.IdDeleteCategory = async (req, res, next) => {
-  res.send("ID Delete category")
-};
+exports.GetAddCategory =asyncHandler( async (req, res, next) => {
+  res.status(200).json({
+    success: true,
+  })
+});
+exports.PostAddCategory =asyncHandler( async (req, res) => {
+  const category = await Category.create(req.body);
+  res.status(201).json({
+    success: true,
+    data: category
+  })
+});
+exports.GetIDCategory =asyncHandler( async (req, res, next) => {
+  const category = await Category.findById(req.params.id);
+  if(!category){
+    return next(new ErrorResponse(`Category with id ${req.params.id} was not found`, 404));
+  }
+  res.status(200).json({
+    success: true,
+    data: category
+  })
+});
+exports.PostEditCategory =asyncHandler( async (req, res, next) => {
+  let category = await Category.findById(req.params.id);
+  if(!category){
+    return next(new ErrorResponse(`Category with id ${req.params.id} was not found`, 404));
+  }
+  category = await Category.findByIdAndUpdate(req.params.id, req.body, {new:true, runValidators: true});
+  res.status(201).json({
+    success: true,
+    data: category
+  })
+});
+exports.IdDeleteCategory =asyncHandler( async (req, res, next) => {
+  let category = await Category.findById(req.params.id);
+  if(!category){
+    return next(new ErrorResponse(`Category with id ${req.params.id} was not found`, 404));
+  }
+  await category.remove();
+  res.status(201).json({
+    success: true,
+    data: category
+  })
+});
 
 /* +++++++++++++++++++++++++++++++++++++++ Worker ++++++++++++++++++++++++++++++++++++++++++++++ */
 
-exports.GetReadWorker = async (req, res, next) => {
-  res.send("All Worker")
-};
+exports.GetReadWorker =asyncHandler( async (req, res, next) => {
+  const worker = await Worker.find();
 
-exports.GetAddWorker = async (req, res, next) => {
-  res.send("Create worker Get")
-};
-exports.PostAddWorker = async (req, res, next) => {
-  res.send("Create worker Post")
-};
-
-exports.GetIDWorker = async (req, res, next) => {
-  res.send("ID Worker page")
-};
-exports.PostEditWorker = async (req, res, next) => {
-  res.send("ID Edit worker")
-};
-exports.IdDeleteWorker = async (req, res, next) => {
-  res.send("ID Delete worker")
-};
+  res.status(200).json({
+    success: true,
+    data: worker
+  })
+});
+exports.GetAddWorker =asyncHandler( async (req, res, next) => {
+  res.status(200).json({
+    success: true,
+  })
+});
+exports.PostAddWorker =asyncHandler( async (req, res, next) => {
+  const worker = await Worker.create(req.body);
+  res.status(201).json({
+    success: true,
+    data: worker
+  })
+});
+exports.GetIDWorker =asyncHandler( async (req, res, next) => {
+  const worker = await Worker.findById(req.params.id);
+  if(!worker){
+    return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
+  }
+  res.status(200).json({
+    success: true,
+    data: worker
+  })
+});
+exports.PostEditWorker =asyncHandler( async (req, res, next) => {
+  let worker = await Worker.findById(req.params.id);
+  if(!worker){
+    return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
+  }
+  worker = await Worker.findByIdAndUpdate(req.params.id, req.body, {new:true, runValidators: true});
+  res.status(201).json({
+    success: true,
+    data: worker
+  })
+});
+exports.IdDeleteWorker =asyncHandler( async (req, res, next) => {
+  let worker = await Worker.findById(req.params.id);
+  if(!worker){
+    return next(new ErrorResponse(`Worker with id ${req.params.id} was not found`, 404));
+  }
+  await worker.remove();
+  res.status(201).json({
+    success: true,
+    data: worker
+  })
+});
