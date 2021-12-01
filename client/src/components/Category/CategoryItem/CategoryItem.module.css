@@ -1,0 +1,7 @@
+.CategoryItem {
+  width: 70%;
+  text-align: center;
+  box-shadow: 0 0 4px 1px #ccc;
+  padding: 10px 0;
+  margin: 10px auto;
+}

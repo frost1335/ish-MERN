@@ -1,13 +1,16 @@
 import React from "react";
 import { Container, Grid } from "@material-ui/core";
+import Category from "../components/Category/Category";
+import Navbar from "../components/Navbar/Navbar";
 
 const Home = () => {
   return (
-    <Container>
-      <Grid item={true} xs={2}>
-        <h1>asd</h1>
-      </Grid>
-    </Container>
+    <>
+      <Navbar />
+      <Container>
+        <Category />
+      </Container>
+    </>
   );
 };
 
