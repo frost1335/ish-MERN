@@ -6,7 +6,9 @@ const Search = () => {
     <div className={classes.Search}>
       <form action={null} className={classes.SearchForm}>
         <input type="text" placeholder="Кто вам нужен ?" />
-        <button>Найти мастера</button>
+        <button>
+          <i className={"fad fa-search"}></i> Найти мастера
+        </button>
       </form>
     </div>
   );

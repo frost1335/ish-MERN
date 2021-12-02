@@ -6,24 +6,30 @@ import logo from "./rabotniki.png";
 
 const Navbar = () => {
   return (
-    <Container>
-      <div className={classes.Navbar}>
-        <Grid item xs={3}>
-          <div className={classes.logoBox}>
-            <img src={logo} alt={logo} />
-          </div>
-        </Grid>
-        <Grid item xs={6}>
-          <Search />
-        </Grid>
-        <Grid item xs={4}>
-          <div className={classes.NavLogin}>
-            <a href={""}>Register</a>
-            <a href={""}>Login</a>
-          </div>
-        </Grid>
-      </div>
-    </Container>
+    <div style={{ background: "#fff" }}>
+      <Container>
+        <div className={classes.Navbar}>
+          <Grid item xs={3}>
+            <div className={classes.logoBox}>
+              <img src={logo} alt={logo} />
+            </div>
+          </Grid>
+          <Grid item xs={6}>
+            <Search />
+          </Grid>
+          <Grid item xs={4}>
+            <div className={classes.NavLogin}>
+              <a href={""}>
+                <i className={"fad fa-user-plus"}></i> Register
+              </a>
+              <a href={""}>
+                <i className={"fad fa-sign-in "}></i> Login
+              </a>
+            </div>
+          </Grid>
+        </div>
+      </Container>
+    </div>
   );
 };
 
