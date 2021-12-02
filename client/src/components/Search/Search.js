@@ -1,10 +1,13 @@
 import React from "react";
+import classes from "./Search.module.css";
 
 const Search = () => {
   return (
-    <div>
-      <input type="text" />
-      <h2>Search</h2>
+    <div className={classes.Search}>
+      <form action={null} className={classes.SearchForm}>
+        <input type="text" placeholder="Кто вам нужен ?" />
+        <button>Найти мастера</button>
+      </form>
     </div>
   );
 };
