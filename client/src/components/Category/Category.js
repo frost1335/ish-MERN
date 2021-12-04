@@ -14,7 +14,6 @@ const Category = (props) => {
       setLoading(true);
       try {
         const { data } = await axios.get("/admin/categorys/");
-        console.log(data.data);
         setCategory(data.data);
         setLoading(false);
       } catch (error) {

@@ -3,8 +3,7 @@ const { Schema, model } = require("mongoose");
 const workerSchema  = new Schema({
   name: {
     type: String,
-    required: [true, "Please provide a name"],
-    unique: true,
+    required: [true, "Please provide a name"],  
   },
   price: {
     type: Number,
