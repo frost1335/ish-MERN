@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
 import classes from "./WorkersItem.module.css";
-
+//...WorkersItem
 const WorkersItem = () => {
   return (
     <Grid item xs={12} md={10} lg={8} xl={8} style={{ margin: "auto" }}>
