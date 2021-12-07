@@ -3,9 +3,8 @@ import classes from "./CategoryItem.module.css";
 import { Link } from "react-router-dom";
 
 const CategoryItem = (props) => {
-  
   return (
-    <Link to={`/categorys/${props.category._id}`}>
+    <Link to={`/categorys/${props.category._id}`} exact={true}>
       <div className={classes.CategoryItem}>
         <p>{props.category.name}</p>
         <span>{props.category.img}</span>

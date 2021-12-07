@@ -168,19 +168,19 @@ exports.GetAddWorker = asyncHandler(async (req, res, next) => {
   });
 });
 exports.PostAddWorker = asyncHandler(async (req, res, next) => {
-  const { name, price, comment, adress, categoryId } = req.body;
+  const { name, price, description, adress, categoryId } = req.body;
   if (req.file) {
     img = req.file.filename;
   } else {
     img = "";
   }
-  const workers = new Work({
+  const workers = new Worker({
     name,
     price,
-    comment,
     adress,
     img,
     categoryId,
+    description,
   });
   await workers.save();
   res.status(201).json({

@@ -4,10 +4,11 @@
   margin: 15px;
   padding: 15px;
   box-shadow: 0 0 3px 1px #ccc;
+  cursor: pointer;
 }
 
 .WorkersItem:hover {
-  box-shadow: 0 0 5px 0px #5385c2;
+  box-shadow: 0 0 4px 2px rgba(87, 136, 197, 0.5);
 }
 
 .itemLeft {
@@ -32,4 +33,40 @@
 
 .imgBox img {
   width: 100%;
+}
+
+.itemStars {
+  margin-top: 10px;
+}
+
+.workerName {
+  margin: 0;
+  font-weight: 400;
+  font-size: 22px;
+  color: #5385c2;
+}
+
+.workerReview {
+  font-weight: 300;
+  font-size: 14px;
+  color: #444;
+}
+
+.workerAdress {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.workerAdress i {
+  margin-right: 5px;
+}
+
+.workerDate {
+  font-size: 14px;
+  color: #444;
+  font-weight: 400;
+}
+
+.workerDescription {
 }

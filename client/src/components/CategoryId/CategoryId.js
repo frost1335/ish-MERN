@@ -16,6 +16,7 @@ const CategoryId = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(`/admin/categorys/${params.id}`);
+        console.log(data);
         setCategory(data.data);
         setLoading(false);
       } catch (error) {

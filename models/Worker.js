@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
 
-const workerSchema  = new Schema({
+const workerSchema = new Schema({
   name: {
     type: String,
-    required: [true, "Please provide a name"],  
+    required: [true, "Please provide a name"],
   },
   price: {
     type: Number,
@@ -13,7 +13,7 @@ const workerSchema  = new Schema({
     type: String,
     // required: [true, "Please provide a image"],
   },
-  comment: {
+  description: {
     type: String,
     required: [true, "Please provide a comment"],
   },
@@ -22,10 +22,21 @@ const workerSchema  = new Schema({
     required: [true, "Please provide a adress"],
   },
   categoryId: {
-    ref: 'categorys',
+    ref: "categorys",
     type: Schema.Types.ObjectId,
     required: [true, "Please provide a Category"],
-  }
+  },
+  stars: {
+    type: Number,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  review: {
+    type: Array,
+    default: [],
+  },
 });
 
 const Worker = model("worker", workerSchema);
