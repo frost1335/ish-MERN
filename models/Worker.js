@@ -11,7 +11,7 @@ const workerSchema  = new Schema({
   },
   img: {
     type: String,
-    required: [true, "Please provide a image"],
+    // required: [true, "Please provide a image"],
   },
   comment: {
     type: String,

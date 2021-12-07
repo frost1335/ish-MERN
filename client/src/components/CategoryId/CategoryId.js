@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import WorkersList from "../WorkersList/WorkersList";
+import { Container, Grid } from "@material-ui/core";
 
 const CategoryId = () => {
   const [category, setCategory] = useState([]);
@@ -25,7 +26,22 @@ const CategoryId = () => {
     fetchData();
   }, []);
   return (
-    <div>{loading ? <Loader /> : <WorkersList category={category} />}</div>
+    <div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Container>
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            <Grid item xs={12} md={10} lg={8}>
+              <WorkersList category={category} />
+            </Grid>
+            <Grid item xs={12} md={10} lg={4}>
+              <div>Filter</div>
+            </Grid>
+          </div>
+        </Container>
+      )}
+    </div>
   );
 };
 

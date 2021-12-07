@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./WorkersList.module.css";
 import WorkersItem from "./WorkersItem/WorkersItem";
-import { Container } from "@material-ui/core";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const WorkersList = (props) => {
-  return (
-    <Container>
-      <div className={classes.WorkersList}>
-        <WorkersItem />
-      </div>
-    </Container>
-  );
+  console.log(props);
+  const workersMap = () => {
+    props.category.map((worker, index) => {
+      return <WorkersItem worker={worker} key={index} />;
+    });
+  };
+
+  return <div className={classes.WorkersList}>{workersMap()}</div>;
 };
 
 export default WorkersList;
