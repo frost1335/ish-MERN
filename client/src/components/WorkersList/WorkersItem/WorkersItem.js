@@ -2,8 +2,8 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 import classes from "./WorkersItem.module.css";
 
-const WorkersItem = (props) => {
-  console.log(props);
+
+const WorkersItem = () => {
   return (
     <div className={classes.WorkersItem}>
       <div className={classes.itemLeft}>
