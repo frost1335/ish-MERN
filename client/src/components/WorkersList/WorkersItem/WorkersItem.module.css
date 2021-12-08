@@ -33,6 +33,7 @@
 
 .imgBox img {
   width: 100%;
+  
 }
 
 .itemStars {
@@ -50,12 +51,15 @@
   font-weight: 300;
   font-size: 14px;
   color: #444;
+  text-decoration: none;
 }
 
 .workerAdress {
   margin: 8px 0;
   font-size: 16px;
   font-weight: 400;
+  color: #444;
+  text-decoration: none;
 }
 
 .workerAdress i {

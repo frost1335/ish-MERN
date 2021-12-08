@@ -5,3 +5,7 @@
   padding: 10px 0;
   margin: 10px auto;
 }
+
+.CategoryItem:hover {
+  box-shadow: 0 0 4px 1px rgba(87, 136, 197, 0.5);
+}

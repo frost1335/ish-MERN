@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import classes from "./CategoryId.module.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader/Loader";
@@ -16,7 +15,6 @@ const CategoryId = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(`/admin/categorys/${params.id}`);
-        console.log(data);
         setCategory(data.data);
         setLoading(false);
       } catch (error) {
