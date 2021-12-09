@@ -6,10 +6,7 @@ import { Link } from "react-router-dom";
 const WorkersItem = (props) => {
   console.log(props.worker);
   return (
-    <Link
-      to={`/worker/${props.worker._id}`}
-      style={{ textDecoration: "none", color: "#000" }}
-    >
+    <Link to={`/worker/${props.worker._id}`} style={{textDecoration: 'none', color: '#000'}}>
       <div className={classes.WorkersItem}>
         <div className={classes.itemLeft}>
           <div className={classes.imgBox}>

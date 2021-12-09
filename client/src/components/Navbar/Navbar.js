@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Navbar.module.css";
 import { Container, Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import Search from "../Search/Search";
 import logo from "./rabotniki.png";
 
@@ -11,7 +12,9 @@ const Navbar = () => {
         <div className={classes.Navbar}>
           <Grid item xs={3}>
             <div className={classes.logoBox}>
-              <img src={logo} alt={logo} />
+              <Link to="/">
+                <img src={logo} alt={logo} />
+              </Link>
             </div>
           </Grid>
           <Grid item xs={6}>
@@ -19,12 +22,12 @@ const Navbar = () => {
           </Grid>
           <Grid item xs={4}>
             <div className={classes.NavLogin}>
-              <a href={""}>
+              <Link to="/">
                 <i className={"fad fa-user-plus"}></i> Register
-              </a>
-              <a href={""}>
+              </Link>
+              <Link to="/">
                 <i className={"fad fa-sign-in "}></i> Login
-              </a>
+              </Link>
             </div>
           </Grid>
         </div>
