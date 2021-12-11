@@ -12,6 +12,20 @@ const WorkerId = (props) => {
   const [loading, setLoading] = useState(false);
   const [worker, setWorker] = useState([]);
 
+  const text = `
+  asdasd
+  
+  asd
+  asasd
+  sad
+  sa
+  d
+  asd
+  a
+  sd
+  d
+  `
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,7 +39,7 @@ const WorkerId = (props) => {
       }
     };
     fetchData();
-  }, []);
+  }, [params]);
 
   return (
     <Container>
@@ -59,20 +73,26 @@ const WorkerId = (props) => {
           <div className={classes.workerRow}>
             <Grid item xs={12} lg={8}>
               <h2 className={classes.descriptionTitle}>Информация</h2>
-              <p className={classes.workerDescription}>{worker.description}</p>
+              <pre className={classes.workerDescription}>
+                {`${text}`}
+              </pre>
             </Grid>
           </div>
 
-          <h2 className={classes.commentTitle}>Отзыви работника</h2>
+          <h2 className={classes.commentTitle}>
+            Отзыви работника <span className={classes.commentCount}>(3)</span>
+          </h2>
 
           <div className={classes.workerComments}>
             {
               /* worker.review */ [1, 2, 3, 4].map((rev, index) => {
                 return (
                   <div className={classes.comment} key={index}>
-                    <span>Дата: 09.12.2021</span>
+                    <span className={classes.commentDate}>
+                      <i className="fad fa-calendar-alt"></i> 09.12.2021
+                    </span>
                     <div className={classes.commentStar}>
-                      <span>Отлично: </span>
+                      <span className={classes.starReview}>Отлично: </span>
                       <Rating
                         value={3}
                         readOnly

@@ -23,7 +23,7 @@ const CategoryId = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [params]);
   return (
     <div>
       {loading ? (

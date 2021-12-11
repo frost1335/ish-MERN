@@ -49,13 +49,17 @@
 }
 
 .workerDescription {
+  font-size: 17px;
+  font-family: "Roboto", sans-serif !important;
+  line-height: 25px;
+  color: #444;
 }
 
 .commentTitle {
   text-align: center;
   font-weight: 400;
   font-size: 22px;
-  margin-top: 45px;
+  margin-top: 65px;
 }
 
 .commentTitle::after {
@@ -65,4 +69,38 @@
   height: 2px;
   background-color: rgba(223, 103, 63, 1);
   margin: 15px auto;
+}
+
+.comment {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 30px 20px;
+  margin: 10px;
+  box-shadow: 0 0 4px 1px #ccc;
+}
+
+.commentDate {
+  display: flex;
+  color: #757575;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.commentDate i {
+  margin-right: 7px;
+}
+
+.commentStar {
+  display: flex;
+  align-items: center;
+}
+
+.commentStar .starReview {
+  margin-right: 7px;
+}
+
+.textReview {
+  font-size: 16px;
+  line-height: 25px;
+  color: #444;
 }
